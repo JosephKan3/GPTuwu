@@ -1,36 +1,40 @@
 // Function to handle the replacement of the SVG with an image
 function replaceSvgWithImage(svg) {
-  if (!svg.parentNode || !svg.parentNode.parentNode) {
-    console.error('SVG element has no parent:', svg);
-    return;
-  }
-
-  // Create a unique id for the new image element
-  const imgId = 'unique-image-id'; // Change this to a unique id
-
-  // Check if an element with the same id already exists
-  const existingImg = document.getElementById(imgId);
-
-  // Create an image element
-  const img = document.createElement('img');
-  img.setAttribute('id', imgId); // Set the unique id
-  img.setAttribute('width', svg.getAttribute('width'));
-  img.setAttribute('height', svg.getAttribute('height'));
-  img.setAttribute('role', 'img');
-  img.src = chrome.runtime.getURL('uwu.gif'); // Ensure this is the correct path to your GIF
-  img.style.width = '100%';
-  img.style.height = '100%';
-  img.style.objectFit = 'cover';
-  img.style.transform = 'scale(1.1)';
-  img.style.transformOrigin = 'center center';
-
-  // Replace the SVG with the new image after timeout if first load -- avoids conflicting with pre-existing frameworks that cause conflicts of DOM state
-  if (!existingImg) {
-    setTimeout(() => {
+  try {
+    if (!svg.parentNode || !svg.parentNode.parentNode) {
+      console.error('SVG element has no parent:', svg);
+      return;
+    }
+  
+    // Create a unique id for the new image element
+    const imgId = 'unique-image-id'; // Change this to a unique id
+  
+    // Check if an element with the same id already exists
+    const existingImg = document.getElementById(imgId);
+  
+    // Create an image element
+    const img = document.createElement('img');
+    img.setAttribute('id', imgId); // Set the unique id
+    img.setAttribute('width', svg.getAttribute('width'));
+    img.setAttribute('height', svg.getAttribute('height'));
+    img.setAttribute('role', 'img');
+    img.src = chrome.runtime.getURL('uwu.gif'); // Ensure this is the correct path to your GIF
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.transform = 'scale(1.1)';
+    img.style.transformOrigin = 'center center';
+  
+    // Replace the SVG with the new image after timeout if first load -- avoids conflicting with pre-existing frameworks that cause conflicts of DOM state
+    if (!existingImg) {
+      setTimeout(() => {
+        svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
+      }, 800);
+    } else {
       svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
-    }, 800);
-  } else {
-    svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
+    }
+  } catch (err) {
+    return
   }
 }
 
