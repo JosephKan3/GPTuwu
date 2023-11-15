@@ -1,0 +1,1 @@
+An extension to replace the GPT chat icon with a mischievous cat.

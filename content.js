@@ -1,12 +1,19 @@
 // Function to handle the replacement of the SVG with an image
 function replaceSvgWithImage(svg) {
-  if (!svg.parentNode) {
+  if (!svg.parentNode || !svg.parentNode.parentNode) {
+    console.error('SVG element has no parent:', svg);
     return;
   }
-  
+
+  // Create a unique id for the new image element
+  const imgId = 'unique-image-id'; // Change this to a unique id
+
+  // Check if an element with the same id already exists
+  const existingImg = document.getElementById(imgId);
+
   // Create an image element
   const img = document.createElement('img');
-  svg = svg.parentNode
+  img.setAttribute('id', imgId); // Set the unique id
   img.setAttribute('width', svg.getAttribute('width'));
   img.setAttribute('height', svg.getAttribute('height'));
   img.setAttribute('role', 'img');
@@ -17,8 +24,14 @@ function replaceSvgWithImage(svg) {
   img.style.transform = 'scale(1.1)';
   img.style.transformOrigin = 'center center';
 
-  // Replace the SVG with the new image
-  svg.parentNode.replaceChild(img, svg);
+  // Replace the SVG with the new image after timeout if first load -- avoids conflicting with pre-existing frameworks that cause conflicts of DOM state
+  if (!existingImg) {
+    setTimeout(() => {
+      svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
+    }, 800);
+  } else {
+    svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
+  }
 }
 
 // Observer callback to handle mutations
