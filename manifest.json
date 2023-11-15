@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "GPT:3",
+  "description": "This extension replaces the ChatGPT icon with a GIF.",
+  "version": "1.0",
+  "permissions": ["activeTab"],
+  "web_accessible_resources": [
+    "uwu.gif"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
