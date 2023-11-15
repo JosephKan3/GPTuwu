@@ -14,11 +14,8 @@ function replaceSvgWithImage(svg) {
   
     // Create an image element
     const img = document.createElement('img');
-    img.setAttribute('id', imgId); // Set the unique id
-    img.setAttribute('width', svg.getAttribute('width'));
-    img.setAttribute('height', svg.getAttribute('height'));
     img.setAttribute('role', 'img');
-    img.src = chrome.runtime.getURL('uwu.gif'); // Ensure this is the correct path to your GIF
+    img.src = chrome.runtime.getURL('uwu.gif');
     img.style.position = 'absolute';
     img.style.width = '100%';
     img.style.height = '100%';
@@ -28,8 +25,6 @@ function replaceSvgWithImage(svg) {
   
     // Hide the previous svg to avoid DOM state conflicts
     svg.parentNode.style.opacity = '0'
-    svg.parentNode.style.width = '0'
-    svg.parentNode.style.length = '0'
     svg.parentNode.parentNode.appendChild(img)
   } catch (err) {
     return
