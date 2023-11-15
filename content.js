@@ -19,20 +19,18 @@ function replaceSvgWithImage(svg) {
     img.setAttribute('height', svg.getAttribute('height'));
     img.setAttribute('role', 'img');
     img.src = chrome.runtime.getURL('uwu.gif'); // Ensure this is the correct path to your GIF
+    img.style.position = 'absolute';
     img.style.width = '100%';
     img.style.height = '100%';
     img.style.objectFit = 'cover';
     img.style.transform = 'scale(1.1)';
     img.style.transformOrigin = 'center center';
   
-    // Replace the SVG with the new image after timeout if first load -- avoids conflicting with pre-existing frameworks that cause conflicts of DOM state
-    if (!existingImg) {
-      setTimeout(() => {
-        svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
-      }, 800);
-    } else {
-      svg.parentNode.parentNode.replaceChild(img, svg.parentNode);
-    }
+    // Hide the previous svg to avoid DOM state conflicts
+    svg.parentNode.style.opacity = '0'
+    svg.parentNode.style.width = '0'
+    svg.parentNode.style.length = '0'
+    svg.parentNode.parentNode.appendChild(img)
   } catch (err) {
     return
   }
