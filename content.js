@@ -6,12 +6,6 @@ function replaceSvgWithImage(svg) {
       return;
     }
   
-    // Create a unique id for the new image element
-    const imgId = 'unique-image-id'; // Change this to a unique id
-  
-    // Check if an element with the same id already exists
-    const existingImg = document.getElementById(imgId);
-  
     // Create an image element
     const img = document.createElement('img');
     img.setAttribute('role', 'img');
@@ -35,10 +29,6 @@ function replaceSvgWithImage(svg) {
 function handleMutations(mutations) {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
-      // Check if the added node is an SVG and has a child with the text 'ChatGPT'
-      if (node.nodeName.toLowerCase() === 'svg' && node.querySelector('text')?.textContent.includes('ChatGPT')) {
-        replaceSvgWithImage(node);
-      }
       // If the added node contains SVGs, check its children
       if (node.querySelectorAll) {
         const svgElements = node.querySelectorAll('svg.icon-sm');
