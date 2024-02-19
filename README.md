@@ -32,6 +32,10 @@ Enjoy your enhanced chatting experience with a touch of fun!
 
 - `activeTab`: Necessary for the extension to operate on the current tab you're viewing, allowing it to modify the ChatGPT webpage.
 
+## Privacy Policy
+
+GPTuwu does not collect any personal data or user information. The extension operates solely within the confines of the user's browser and does not transmit any data externally. No user activity is tracked, logged, or stored. GPTuwu respects user privacy and is committed to maintaining the confidentiality of user interactions.
+
 ## Compatibility
 
 This extension has been tested with Chrome version XX.X or higher. It is specifically designed for use on chat.openai.com.

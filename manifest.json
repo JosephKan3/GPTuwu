@@ -3,7 +3,6 @@
   "name": "GPTuwu",
   "description": "This extension replaces the ChatGPT icon with a GIF of a silly cat.",
   "version": "1.0",
-  "permissions": ["activeTab"],
   "web_accessible_resources": [
     { "resources": ["uwu.gif"], "matches": ["*://chat.openai.com/*"] }
   ],
