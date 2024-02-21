@@ -4,10 +4,17 @@
   "description": "This extension replaces the ChatGPT icon with a GIF of a silly cat.",
   "version": "1.0",
   "web_accessible_resources": [
-    { "resources": ["uwu.gif"], "matches": ["*://chat.openai.com/*"] }
+    {
+      "resources": ["uwu.gif"],
+      "matches": ["*://chat.openai.com/*"]
+    }
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "icon.png"
+  },
+  "icons": {
+    "32": "icon.png",
+    "512": "icon.png"
   },
   "content_scripts": [
     {
